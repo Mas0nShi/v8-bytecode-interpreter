@@ -8,6 +8,5 @@ export default function (context: IContext, stm: IStatement): void {
     const idx = stm.opcode.idx ?? reg;
     context.registers[idx].value = context.accumulator.value;
 
-    // TODO: set pc to the next statement.
     context.pc += stm.bytes.byteLength;
 }

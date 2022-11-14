@@ -3,7 +3,7 @@ import IRegister from './IRegister';
 import IStack from './IStack';
 
 export default class IContext {
-    public global: typeof globalThis;
+    public global: {[key: string]: any};
     public constants: any[] = []; // Constants.
     public accumulator: IAccumulator;
     public registers: IRegister[];

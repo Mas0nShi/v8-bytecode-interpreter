@@ -1,15 +1,13 @@
+import process from 'process';
+import path from 'path';
+
 import fs from 'fs';
-import IRegister from './src/vm/IRegister';
-import IStatement from './src/parser/IStatement';
-import Interpreter from './src/vm/Interpreter';
-
-let content = fs.readFileSync("test/dist/for2.txt", "utf8").toString();
+import Interpreter from '../../src/vm/Interpreter';
 
 
-// console.log(content.split('\r\n'));
-// content.split('\r\n').forEach((element: string) => {
-//     console.log(JSON.stringify(IStatement.parse(element)));
-// });
+const filePath = path.join(process.cwd(), 'example/dist', 'for2.txt');
+
+let content = fs.readFileSync(filePath, "utf8").toString();
 
 const interpreter = new Interpreter(
     content.split('\n'), 
@@ -33,4 +31,3 @@ const interpreter = new Interpreter(
         'Success!'
     ]);
 interpreter.execute();
-

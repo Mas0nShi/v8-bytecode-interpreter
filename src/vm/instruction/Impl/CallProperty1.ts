@@ -8,6 +8,6 @@ export default function (context: IContext, stm: IStatement): void {
     const scope = context.registers[rIdx2].value;
     const arg = context.registers[rIdx3].value;
     context.accumulator.value = <any>func.call(scope, arg);
-    // TODO: set pc to the next statement.
+
     context.pc += stm.bytes.byteLength;
 }

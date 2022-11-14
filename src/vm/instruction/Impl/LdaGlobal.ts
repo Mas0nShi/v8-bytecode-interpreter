@@ -8,6 +8,5 @@ export default function (context: IContext, stm: IStatement): void {
     const property = context.constants[cIdx];
     context.accumulator.value = (<any>obj)[property];
 
-    // TODO: set pc to the next statement.
     context.pc += stm.bytes.byteLength;
 }

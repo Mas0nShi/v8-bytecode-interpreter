@@ -1,0 +1,98 @@
+         0x9a80019a076 @    0 : 13 00             LdaConstant [0]
+         0x9a80019a078 @    2 : c5                Star0
+         0x9a80019a079 @    3 : 7a 01 00 04       CreateArrayLiteral [1], [0], #4
+         0x9a80019a07d @    7 : c4                Star1
+         0x9a80019a07e @    8 : 2d fa 02 01       GetNamedProperty r0, [2], [1]
+         0x9a80019a082 @   12 : be                Star7
+         0x9a80019a083 @   13 : 0d 31             LdaSmi [49]
+         0x9a80019a085 @   15 : 6c f3 03          TestEqual r7, [3]
+         0x9a80019a088 @   18 : 99 13             JumpIfTrue [19] (0x9a80019a09b @ 37)
+         0x9a80019a08a @   20 : 21 03 04          LdaGlobal [3], [4]
+         0x9a80019a08d @   23 : bd                Star8
+         0x9a80019a08e @   24 : 2d f2 04 06       GetNamedProperty r8, [4], [6]
+         0x9a80019a092 @   28 : be                Star7
+         0x9a80019a093 @   29 : 13 05             LdaConstant [5]
+         0x9a80019a095 @   31 : bc                Star9
+         0x9a80019a096 @   32 : 5f f3 f2 f1 08    CallProperty1 r7, r8, r9, [8]
+         0x9a80019a09b @   37 : 7c 0a             CreateEmptyArrayLiteral [10]
+         0x9a80019a09d @   39 : c3                Star2
+         0x9a80019a09e @   40 : 0c                LdaZero
+         0x9a80019a09f @   41 : c0                Star5
+         0x9a80019a0a0 @   42 : 0d 07             LdaSmi [7]
+         0x9a80019a0a2 @   44 : 6e f5 0b          TestLessThan r5, [11]
+         0x9a80019a0a5 @   47 : 9a 43             JumpIfFalse [67] (0x9a80019a0e8 @ 114)
+         0x9a80019a0a7 @   49 : 7c 0c             CreateEmptyArrayLiteral [12]
+         0x9a80019a0a9 @   51 : 34 f8 f5 0d       SetKeyedProperty r2, r5, [13]
+         0x9a80019a0ad @   55 : 0c                LdaZero
+         0x9a80019a0ae @   56 : bf                Star6
+         0x9a80019a0af @   57 : 0d 07             LdaSmi [7]
+         0x9a80019a0b1 @   59 : 6e f4 0f          TestLessThan r6, [15]
+         0x9a80019a0b4 @   62 : 9a 2b             JumpIfFalse [43] (0x9a80019a0df @ 105)
+         0x9a80019a0b6 @   64 : 0b f5             Ldar r5
+         0x9a80019a0b8 @   66 : 2f f8 10          GetKeyedProperty r2, [16]
+         0x9a80019a0bb @   69 : be                Star7
+         0x9a80019a0bc @   70 : 2d fa 06 12       GetNamedProperty r0, [6], [18]
+         0x9a80019a0c0 @   74 : bc                Star9
+         0x9a80019a0c1 @   75 : 0b f5             Ldar r5
+         0x9a80019a0c3 @   77 : 47 07 15          MulSmi [7], [21]
+         0x9a80019a0c6 @   80 : ba                Star11
+         0x9a80019a0c7 @   81 : 0b f4             Ldar r6
+         0x9a80019a0c9 @   83 : 39 ef 14          Add r11, [20]
+         0x9a80019a0cc @   86 : ba                Star11
+         0x9a80019a0cd @   87 : 5f f1 fa ef 16    CallProperty1 r9, r0, r11, [22]
+         0x9a80019a0d2 @   92 : 34 f3 f4 18       SetKeyedProperty r7, r6, [24]
+         0x9a80019a0d6 @   96 : 0b f4             Ldar r6
+         0x9a80019a0d8 @   98 : 51 1a             Inc [26]
+         0x9a80019a0da @  100 : bf                Star6
+         0x9a80019a0db @  101 : 8a 2c 01 1b       JumpLoop [44], [1], [27] (0x9a80019a0af @ 57)
+         0x9a80019a0df @  105 : 0b f5             Ldar r5
+         0x9a80019a0e1 @  107 : 51 1c             Inc [28]
+         0x9a80019a0e3 @  109 : c0                Star5
+         0x9a80019a0e4 @  110 : 8a 44 00 1d       JumpLoop [68], [0], [29] (0x9a80019a0a0 @ 42)
+         0x9a80019a0e8 @  114 : 0c                LdaZero
+         0x9a80019a0e9 @  115 : c2                Star3
+         0x9a80019a0ea @  116 : 0d 07             LdaSmi [7]
+         0x9a80019a0ec @  118 : 6e f7 1e          TestLessThan r3, [30]
+         0x9a80019a0ef @  121 : 9a 4a             JumpIfFalse [74] (0x9a80019a139 @ 195)
+         0x9a80019a0f1 @  123 : 0c                LdaZero
+         0x9a80019a0f2 @  124 : c1                Star4
+         0x9a80019a0f3 @  125 : 0d 07             LdaSmi [7]
+         0x9a80019a0f5 @  127 : 6e f6 1f          TestLessThan r4, [31]
+         0x9a80019a0f8 @  130 : 9a 38             JumpIfFalse [56] (0x9a80019a130 @ 186)
+         0x9a80019a0fa @  132 : 0b f7             Ldar r3
+         0x9a80019a0fc @  134 : 2f f8 20          GetKeyedProperty r2, [32]
+         0x9a80019a0ff @  137 : be                Star7
+         0x9a80019a100 @  138 : 0b f6             Ldar r4
+         0x9a80019a102 @  140 : 2f f3 22          GetKeyedProperty r7, [34]
+         0x9a80019a105 @  143 : be                Star7
+         0x9a80019a106 @  144 : 0b f7             Ldar r3
+         0x9a80019a108 @  146 : 2f f9 24          GetKeyedProperty r1, [36]
+         0x9a80019a10b @  149 : bd                Star8
+         0x9a80019a10c @  150 : 0b f6             Ldar r4
+         0x9a80019a10e @  152 : 2f f2 26          GetKeyedProperty r8, [38]
+         0x9a80019a111 @  155 : 6d f3 28          TestEqualStrict r7, [40]
+         0x9a80019a114 @  158 : 99 13             JumpIfTrue [19] (0x9a80019a127 @ 177)
+         0x9a80019a116 @  160 : 21 03 04          LdaGlobal [3], [4]
+         0x9a80019a119 @  163 : bd                Star8
+         0x9a80019a11a @  164 : 2d f2 04 06       GetNamedProperty r8, [4], [6]
+         0x9a80019a11e @  168 : be                Star7
+         0x9a80019a11f @  169 : 13 07             LdaConstant [7]
+         0x9a80019a121 @  171 : bc                Star9
+         0x9a80019a122 @  172 : 5f f3 f2 f1 29    CallProperty1 r7, r8, r9, [41]
+         0x9a80019a127 @  177 : 0b f6             Ldar r4
+         0x9a80019a129 @  179 : 51 2b             Inc [43]
+         0x9a80019a12b @  181 : c1                Star4
+         0x9a80019a12c @  182 : 8a 39 01 2c       JumpLoop [57], [1], [44] (0x9a80019a0f3 @ 125)
+         0x9a80019a130 @  186 : 0b f7             Ldar r3
+         0x9a80019a132 @  188 : 51 2d             Inc [45]
+         0x9a80019a134 @  190 : c2                Star3
+         0x9a80019a135 @  191 : 8a 4b 00 2e       JumpLoop [75], [0], [46] (0x9a80019a0ea @ 116)
+         0x9a80019a139 @  195 : 21 03 04          LdaGlobal [3], [4]
+         0x9a80019a13c @  198 : bd                Star8
+         0x9a80019a13d @  199 : 2d f2 04 06       GetNamedProperty r8, [4], [6]
+         0x9a80019a141 @  203 : be                Star7
+         0x9a80019a142 @  204 : 13 08             LdaConstant [8]
+         0x9a80019a144 @  206 : bc                Star9
+         0x9a80019a145 @  207 : 5f f3 f2 f1 2f    CallProperty1 r7, r8, r9, [47]
+         0x9a80019a14a @  212 : 0e                LdaUndefined
+         0x9a80019a14b @  213 : aa                Return

@@ -1,6 +1,7 @@
 import Insns from './instruction';
 import IContext from './IContext';   
 import IStatement from '../parser/IStatement';
+import Logger from './utils/Logger';
 
 export default class Interpreter {
     private context: IContext;
@@ -14,18 +15,23 @@ export default class Interpreter {
     }
 
     public execute(): any {
-        console.log("Before execution");
-        console.log(this.context);
-        console.log("Start execution");
+        // Logger.debug('=== Context ===');
+        // Logger.logContext(this.context);
+        // Logger.debug('=====================Execute Start=====================');
         
         // TODO: Implement.
         let result;
 
+        const maxpc = Math.max(...Object.keys(this.statements).map((v: string) => parseInt(v, 10)));
         while (1) {
+            // End of program.
+            if (this.context.pc > maxpc) break;
+
             const stm = this.statements[this.context.pc];
             // console.log(stm);
-            
-            if (!stm) break;
+            Logger.debug("Stmt", stm.opcode, stm.operands);
+
+            if (!stm) throw new Error(`Invalid pc: ${this.context.pc}`);
             const insn = Insns[stm.opcode.name];
             if (!insn) throw new Error(`Unimplemented instruction: ${stm.opcode.name}`);
 
@@ -33,15 +39,16 @@ export default class Interpreter {
                 result = insn(this.context, stm);
             } catch (e) {
                 // TODO: Handle error.
-                console.error(e);
+                Logger.logContext(this.context);
+                Logger.debug("ERR", e);
                 break;
             }
         }
 
-        console.log('Running end of program');
-        console.log(result);
-        
-        console.log(this.context);
+        // Logger.debug('=====================Execute End=======================');
+        // Logger.debug('Result: ' + result);
+        // Logger.debug('=== Context ===');
+        // Logger.logContext(this.context);
     }
 
     public static Run(statements: string[]): void {
