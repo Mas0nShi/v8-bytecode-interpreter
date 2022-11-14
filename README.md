@@ -2,7 +2,7 @@
 
 A micro-bytecode interpreter for V8.
 
-![](img/screenshot.gif)
+![img](img/screenshot.gif)
 
 ## Usage
 
