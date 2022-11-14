@@ -50,51 +50,134 @@ const Insns: {[key: string]: (context: IContext, stm: IStatement) => any} = {
     Ldar,
     LdaZero,
     'LdaSmi': LdaSmi, 'LdaSmi.Wide': LdaSmi, 'LdaSmi.ExtraWide': LdaSmi,
-    
     LdaUndefined,
     LdaNull,
-    LdaGlobal,
     LdaConstant,
-
     LdaFalse,
     LdaTrue,
+    // LdaTheHole,
+    // LdaContextSlot,
+    // LdaImmutableContextSlot,
+    // LdaCurrentContextSlot,
+    // LdaImmutableCurrentContextSlot,
 
-
-    GetNamedProperty, // * LdaNamedProperty in v8 latest version.
-    GetKeyedProperty,
-
-    CallProperty1,
-    Return,
-    // Store the value of accumulator Instructions.
+    /* - [Register Loads ] */
     Star,
+    // Mov,
+    // PushContext,
+    // PopContext,
+
+    /* - [Test Operations ] */
+    // TestReferenceEqual,
+    // TestUndetectable,
+    // TestNull,
+    // TestUndefined,
+    // TestTypeOf,
+
+
+    /* Globals */
+    LdaGlobal,
+    // LdaGlobalInsideTypeof,
     StaGlobal,
-    SetKeyedProperty,
 
-    CreateEmptyArrayLiteral,
-    CreateArrayLiteral,
+    /* Context operations */
+    // StaContextSlot,
+    // StaCurrentContextSlot,
 
-    // Test Instructions
+    /* Load-Store lookup slots */
+    //
+
+    /* Property loads (LoadIC) operations */ 
+    GetNamedProperty, // * LdaNamedProperty in v8 latest version.
+    // LdaNamedPropertyFromSuper,
+    GetKeyedProperty, // * LdaKeyedProperty in v8 latest version.
+
+    /* Operations on module variables */
+    //
+
+    /* Propery stores (StoreIC) operations */
+    SetKeyedProperty, // * StaKeyedProperty in v8 latest version.
+    // StaNamedOwnProperty,
+
+    /* Binary Operators */
+    Add,
+    //
+
+    /* Binary operators with immediate operands */
+    MulSmi,
+    //
+
+    /* Unary Operators */
+    Inc,
+
+    /* GetSuperConstructor operator */
+    //
+
+    /* Call operations */
+    CallProperty1,
+    // 
+
+    /* Intrinsics */
+    /* Construct operators */
+
+    /* Effectful Test Operators */
     TestLessThan,
     TestLessThanOrEqual,
     TestGreaterThan,
     TestGreaterThanOrEqual,
     TestEqual,
     TestEqualStrict,
+    // 
 
-    /* Jump */
+    /* Cast operators */
+    // 
+    /* Literals */
+    CreateEmptyArrayLiteral,
+    CreateArrayLiteral,
+    //
+    /* Tagged templates */
+    /* Closure allocation */
+    /* Context allocation */
+    /* Arguments allocation */
+
+    /* Control Flow -- carefully ordered for efficient checks */
+    /* - [Unconditional jumps] */
+    JumpLoop,
+    /* - [Forward jumps] */
     Jump,
+    /* - [Start constant jumps] */
+    // 
+    /* - [Conditional jumps] */                                                  
+    /* - [Conditional constant jumps] */
+    // 
+    /* - [Start ToBoolean jumps] */
+    // 
+    /* - [End constant jumps] */                                                 
+    /* - [Conditional immediate jumps] */
+    // 
+    /* - [End ToBoolean jumps] */
     JumpIfFalse,
     JumpIfTrue,
-    JumpLoop,
 
-    /* Binary operators with immediate operands */
-    MulSmi,
-
-    /* Binary Operators */
-    Add,
-
-    /* Unary Operators */
-    Inc,
+    /* Smi-table lookup for switch statements */
+    // 
+    /* Complex flow control For..in */
+    // 
+    /* Update the pending message */
+    // 
+    /* Non-local flow control */
+    Return,
+    // 
+    /* Generators */
+    // 
+    /* Iterator protocol operations */
+    // 
+    /* Debugger */
+    // 
+    /* Block Coverage */
+    // 
+    /* Execution Abort (internal error) */
+    // 
 };
 
 export default Insns;
