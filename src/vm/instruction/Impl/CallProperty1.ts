@@ -1,5 +1,5 @@
-import IStatement from '../../parser/IStatement';
-import IContext from '../IContext';
+import IStatement from '../../../parser/IStatement';
+import IContext from '../../IContext';
 
 // CallProperty1: calls a property with 1 argument.
 export default function (context: IContext, stm: IStatement): void {
@@ -8,4 +8,6 @@ export default function (context: IContext, stm: IStatement): void {
     const scope = context.registers[rIdx2].value;
     const arg = context.registers[rIdx3].value;
     context.accumulator.value = <any>func.call(scope, arg);
+    // TODO: set pc to the next statement.
+    context.pc += stm.bytes.byteLength;
 }

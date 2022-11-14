@@ -1,6 +1,6 @@
 // format: Address(hex) | Offset | Bytes | Opcode | Operand | More Info
 const RegexInsn = /.*?(0x[\S]+)\s@\s*(\S+)\s:\s+([0-9a-f\s]+)\s+?(\S+)(.*)/g
-const RegexImm = /\s*?\[(\d+)\]$/g; // e.g. [1]
+const RegexImm = /\s*?\[(\d+)\](.*)/g; // e.g. [1]
 const RegexReg = /\s*?r(\d+)/g; // e.g. r1
 const RegexArg = /[^\s]*?(\d+)$/g; // e.g. a1
 const RegexShortStar = /Star(\d+)/g; // e.g. Star1
@@ -9,7 +9,7 @@ const RegexOperand = /[,]/; // e.g. r1, r2, [12]
 export default class IStatement {
     address: number;
     offset: number;
-    bytes: Buffer;
+    bytes: ArrayBuffer;
     opcode: {name: string, idx: number | null};
     operands: number[];
     others: string; // TODO: Implement! e.g.: Jump Info.
@@ -17,11 +17,24 @@ export default class IStatement {
     constructor(address: number, offset: number, bytes: string, opcode: string, operand: string) {
         this.address = address;
         this.offset = offset;
-        this.bytes = Buffer.from(bytes, 'hex');
+        
+        const buffer = this.parseBytesAndSize(bytes);
+        this.bytes = buffer;
+
         this.opcode = this.parseOpcode(opcode);
+
         const {operands, others} = this.parseOperandAndOthers(operand);
         this.operands = operands;
         this.others = others;
+    }
+
+    private parseBytesAndSize(bytes: string): ArrayBuffer {
+        const hexStrs = bytes.trimStart().trimEnd()
+        const bytehexs = hexStrs.split(' ');
+        const buffer = new ArrayBuffer(bytehexs.length);
+        const view = new DataView(buffer);
+        bytehexs.forEach((v: string, index: number) => view.setUint8(index, parseInt(v, 16)));
+        return buffer;
     }
 
     private parseOpcode(opcode: string): {name: string, idx: number | null} {
@@ -57,7 +70,7 @@ export default class IStatement {
                 return;
             }
             
-            // Jump Info e.g.: [4] (0x1d960019a16c @ 14)
+            // Jump Info e.g.:  (0x1d960019a16c @ 14)
             if (others === '') {
                 others = element.trimStart();
                 return;

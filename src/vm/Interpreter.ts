@@ -4,10 +4,13 @@ import IStatement from '../parser/IStatement';
 
 export default class Interpreter {
     private context: IContext;
-    private statements: IStatement[];
+    private statements: {[offset: number]: IStatement};
     constructor(statements: string[], constants: any[]) {
         this.context = new IContext(constants);
-        this.statements = statements.map((line: string) => IStatement.parse(line));
+        this.statements = {};
+        statements.map((line: string) => IStatement.parse(line)).forEach((stm: IStatement) => {
+            this.statements[stm.offset] = stm;
+        });
     }
 
     public execute(): any {
@@ -17,24 +20,24 @@ export default class Interpreter {
         
         // TODO: Implement.
         let result;
-        while (this.context.pc < this.statements.length) {
-            const stm = this.statements[this.context.pc];
-            const insn = Insns[stm.opcode.name];
-            this.context.pc++;
-            if (insn) {
-                try {
-                    result = insn(this.context, stm);
-                } catch (e: any) {
-                    // TODO: Handle error.
-                    console.log(e.message, stm);
-                    // console.log(this.context.registers);
-                    break;
-                }
-            } else {
-                throw new Error(`Unimplemented instruction: ${stm.opcode.name}`);
-            }
 
+        while (1) {
+            const stm = this.statements[this.context.pc];
+            // console.log(stm);
+            
+            if (!stm) break;
+            const insn = Insns[stm.opcode.name];
+            if (!insn) throw new Error(`Unimplemented instruction: ${stm.opcode.name}`);
+
+            try {
+                result = insn(this.context, stm);
+            } catch (e) {
+                // TODO: Handle error.
+                console.error(e);
+                break;
+            }
         }
+
         console.log('Running end of program');
         console.log(result);
         

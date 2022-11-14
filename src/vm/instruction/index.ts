@@ -1,42 +1,49 @@
 import IStatement from "../../parser/IStatement";
 import IContext from "../IContext";
 
-import LdaSmi from "./LdaSmi";
-import LdaUndefined from "./LdaUndefined";
-import LdaGlobal from "./LdaGlobal";
-import LdaConstant from "./LdaConstant";
-import Ldar from "./Ldar";
-import LdaZero from "./LdaZero";
-import LdaFalse from "./LdaFalse";
-import LdaTrue from "./LdaTrue";
+import Ldar from "./Impl/Ldar";
+import LdaZero from "./Impl/LdaZero";
+import LdaSmi from "./Impl/LdaSmi";
+import LdaUndefined from "./Impl/LdaUndefined";
+import LdaNull from "./Impl/LdaNull";
+import LdaGlobal from "./Impl/LdaGlobal";
+import LdaConstant from "./Impl/LdaConstant";
 
-import GetNamedProperty from "./GetNamedProperty";
-import CallProperty1 from "./CallProperty1";
-import Return from "./Return";
-import Star from "./Star";
-import StaGlobal from "./StaGlobal";
-import CreateEmptyArrayLiteral from "./CreateEmptyArrayLiteral";
+import LdaFalse from "./Impl/LdaFalse";
+import LdaTrue from "./Impl/LdaTrue";
 
-import TestLessThan from "./TestLessThan";
-import TestLessThanOrEqual from "./TestLessThanOrEqual";
-import TestGreaterThan from "./TestGreaterThan";
-import TestGreaterThanOrEqual from "./TestGreaterThanOrEqual";
-import TestEqual from "./TestEqual";
-import TestEqualStrict from "./TestEqualStrict";
+import GetNamedProperty from "./Impl/GetNamedProperty";
+import CallProperty1 from "./Impl/CallProperty1";
+import Return from "./Impl/Return";
+import Star from "./Impl/Star";
+import StaGlobal from "./Impl/StaGlobal";
+import CreateEmptyArrayLiteral from "./Impl/CreateEmptyArrayLiteral";
 
+import TestLessThan from "./Impl/TestLessThan";
+import TestLessThanOrEqual from "./Impl/TestLessThanOrEqual";
+import TestGreaterThan from "./Impl/TestGreaterThan";
+import TestGreaterThanOrEqual from "./Impl/TestGreaterThanOrEqual";
+import TestEqual from "./Impl/TestEqual";
+import TestEqualStrict from "./Impl/TestEqualStrict";
+
+import JumpIfFalse from "./Impl/JumpIfFalse";
 
 const Insns: {[key: string]: (context: IContext, stm: IStatement) => any} = {
-    // Load to accumulator Instructions.
-    'LdaSmi': LdaSmi, 'LdaSmi.Wide': LdaSmi, 'LdaSmi.ExtraWide': LdaSmi,
-    LdaUndefined,
-    LdaGlobal,
-    LdaConstant,
+    /* - [Loading the accumulator] */  
     Ldar,
     LdaZero,
+    'LdaSmi': LdaSmi, 'LdaSmi.Wide': LdaSmi, 'LdaSmi.ExtraWide': LdaSmi,
+    
+    LdaUndefined,
+    LdaNull,
+    LdaGlobal,
+    LdaConstant,
+
     LdaFalse,
     LdaTrue,
 
-    GetNamedProperty, //* LdaNamedProperty in v8 latest version.
+
+    GetNamedProperty, // * LdaNamedProperty in v8 latest version.
     CallProperty1,
     Return,
     // Store the value of accumulator Instructions.
@@ -51,6 +58,9 @@ const Insns: {[key: string]: (context: IContext, stm: IStatement) => any} = {
     TestGreaterThanOrEqual,
     TestEqual,
     TestEqualStrict,
+
+    /* Jump */
+    JumpIfFalse,
 
 };
 
